@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdy771ip5ih3p"]
+
+[ext_resource type="Script" uid="uid://dnc6qod5o4tyg" path="res://Scripts/player.gd" id="1_a3d8c"]
+[ext_resource type="Texture2D" uid="uid://du3bky53f27jx" path="res://Art/ship_concept.png" id="2_xpcdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfl85"]
+size = Vector2(64, 48)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a3d8c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_xpcdj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lfl85")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, -24)

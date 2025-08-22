@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://baqpcff66elb7"]
+
+[ext_resource type="Script" uid="uid://bf02xupsr1ya8" path="res://Scripts/ParallaxBG.gd" id="1_8gbba"]
+[ext_resource type="Texture2D" uid="uid://d2w5bmsnn7t43" path="res://Art/BG/BG_Space.png" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://co8x8pu7oen6r" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cdy771ip5ih3p" path="res://Scenes/Player/player.tscn" id="2_8gbba"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_jjvhh")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_8gbba")
+scroll_speed = 50.0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 1080)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(620, 306)
+texture = ExtResource("1_bo1nx")
+
+[node name="Player" parent="." instance=ExtResource("2_8gbba")]
+
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
